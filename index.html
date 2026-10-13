@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>יורי · האפליקציות שלי</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f3f5f8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="האפליקציות">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f3f5f8;
+    --card:#ffffff;
+    --ink:#16202c;
+    --muted:#667385;
+    --line:#e3e8ee;
+    --shadow:0 1px 2px rgba(22,32,44,.04), 0 8px 24px rgba(22,32,44,.06);
+    --shadow-hover:0 2px 4px rgba(22,32,44,.05), 0 18px 40px rgba(22,32,44,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:Heebo,system-ui,-apple-system,sans-serif;
+    background:var(--bg);color:var(--ink);
+    min-height:100vh;min-height:100dvh;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* רקע רך ונושם */
+  .glow{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .glow span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 18s ease-in-out infinite alternate}
+  .glow .a{width:420px;height:420px;background:#d6e6ee;top:-140px;right:-120px}
+  .glow .b{width:380px;height:380px;background:#dde4f2;bottom:-160px;left:-120px;animation-delay:-6s}
+  @keyframes drift{to{transform:translate(30px,40px) scale(1.08)}}
+
+  main{
+    position:relative;z-index:1;
+    max-width:880px;margin:0 auto;
+    padding:calc(56px + env(safe-area-inset-top)) 20px calc(48px + env(safe-area-inset-bottom));
+  }
+
+  header{margin-bottom:40px;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .hello{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--muted);
+         background:rgba(255,255,255,.7);border:1px solid var(--line);padding:6px 12px;border-radius:99px;backdrop-filter:blur(8px)}
+  .hello i{width:7px;height:7px;border-radius:50%;background:#3aa776;box-shadow:0 0 0 3px rgba(58,167,118,.15)}
+  h1{font-size:clamp(32px,6vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-top:18px}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#2f6f82,#2e5784);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);font-size:17px;margin-top:10px;max-width:440px;line-height:1.55}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+
+  a.app{
+    --tint:#eef4f7; --accent:#2f6f82;
+    position:relative;display:flex;flex-direction:column;
+    background:var(--card);border:1px solid var(--line);border-radius:22px;
+    padding:22px;text-decoration:none;color:inherit;overflow:hidden;
+    box-shadow:var(--shadow);
+    opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  a.app::before{content:"";position:absolute;inset:0 0 auto 0;height:96px;background:linear-gradient(180deg,var(--tint),transparent);opacity:.9;transition:height .4s}
+  a.app:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:#d5dde6}
+  a.app:hover::before{height:130px}
+  a.app:active{transform:translateY(-1px) scale(.99)}
+  a.app:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+  .top{position:relative;display:flex;align-items:center;gap:14px}
+  .icon{width:56px;height:56px;border-radius:15px;flex:none;background:#fff;box-shadow:0 4px 14px rgba(22,32,44,.12);
+        display:grid;place-items:center;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .icon img{width:100%;height:100%;object-fit:cover;display:block}
+  .icon b{font-size:24px;font-weight:800;color:var(--accent)}
+  a.app:hover .icon{transform:rotate(-4deg) scale(1.05)}
+  .name{font-size:21px;font-weight:700;letter-spacing:-.01em}
+  .host{font-size:12.5px;color:var(--muted);direction:ltr;text-align:right;margin-top:1px}
+
+  .desc{position:relative;font-size:15.5px;line-height:1.6;color:#3b4757;margin:18px 0 20px}
+
+  .foot{position:relative;margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12px;font-weight:500;padding:4px 10px;border-radius:99px;background:var(--tint);color:var(--accent)}
+  .go{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--accent);
+      transition:background .3s,color .3s,transform .35s cubic-bezier(.2,.7,.2,1)}
+  .go svg{width:18px;height:18px}
+  a.app:hover .go{background:var(--accent);color:#fff;transform:translateX(-4px)}
+
+  footer{margin-top:44px;font-size:13px;color:#8a95a5;text-align:center;animation:rise .7s .5s both}
+
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before{animation:none!important;transition:none!important}
+    a.app{opacity:1}
+  }
+  @media (max-width:520px){
+    main{padding-top:calc(40px + env(safe-area-inset-top))}
+    header{margin-bottom:28px}
+    .grid{grid-template-columns:1fr;gap:12px}
+    a.app{padding:18px;border-radius:20px}
+  }
+</style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
+
+  <main>
+    <header>
+      <span class="hello"><i></i>יורי בללוב</span>
+      <h1>האפליקציות <em>שלי</em></h1>
+      <p>כל מה שבניתי, במקום אחד. לחיצה פותחת את האפליקציה.</p>
+    </header>
+
+    <section class="grid">
+      <a class="app" href="https://sequel-nu.vercel.app/" style="--tint:#e9f2f5;--accent:#2f6f82;animation-delay:.12s">
+        <div class="top">
+          <div class="icon"><img src="https://sequel-nu.vercel.app/apple-icon" alt="" onerror="this.replaceWith(Object.assign(document.createElement('b'),{textContent:'S'}))"></div>
+          <div><div class="name">Sequel</div><div class="host">sequel-nu.vercel.app</div></div>
+        </div>
+        <p class="desc">מדריכי צפייה לסדרות סרטים גדולות, בסדר הנכון ועם הסבר למה. זוכר איפה עצרת.</p>
+        <div class="foot">
+          <div class="chips"><span class="chip">סרטים</span><span class="chip">סדרי צפייה</span></div>
+          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+        </div>
+      </a>
+
+      <a class="app" href="https://valu.ybelalov.workers.dev/" style="--tint:#eaf0f8;--accent:#2e5784;animation-delay:.22s">
+        <div class="top">
+          <div class="icon"><img src="https://valu.ybelalov.workers.dev/icons/icon-180.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('b'),{textContent:'V'}))"></div>
+          <div><div class="name">Valu</div><div class="host">valu.ybelalov.workers.dev</div></div>
+        </div>
+        <p class="desc">ארנק שוברים, זיכויים וכרטיסי מתנה. תזכורת לפני שפג תוקף, וארנק משותף למשפחה.</p>
+        <div class="foot">
+          <div class="chips"><span class="chip">שוברים</span><span class="chip">ארנק משותף</span></div>
+          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+        </div>
+      </a>
+    </section>
+
+    <footer>נבנה עם Claude</footer>
+  </main>
+</body>
+</html>
