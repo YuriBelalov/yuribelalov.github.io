@@ -8,140 +8,208 @@
 <meta name="theme-color" content="#f3f5f8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="האפליקציות">
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" href="icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f3f5f8;
-    --card:#ffffff;
-    --ink:#16202c;
-    --muted:#667385;
-    --line:#e3e8ee;
-    --shadow:0 1px 2px rgba(22,32,44,.04), 0 8px 24px rgba(22,32,44,.06);
-    --shadow-hover:0 2px 4px rgba(22,32,44,.05), 0 18px 40px rgba(22,32,44,.10);
-  }
+  :root{--bg:#f3f5f8;--card:#fff;--ink:#16202c;--muted:#667385;--soft:#8a95a5;--line:#e3e8ee;--accent:#2e5784}
   *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    font-family:Heebo,system-ui,-apple-system,sans-serif;
-    background:var(--bg);color:var(--ink);
-    min-height:100vh;min-height:100dvh;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  /* רקע רך ונושם */
-  .glow{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-  .glow span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 18s ease-in-out infinite alternate}
+  body{font-family:Heebo,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .glow{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .glow span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:drift 18s ease-in-out infinite alternate}
   .glow .a{width:420px;height:420px;background:#d6e6ee;top:-140px;right:-120px}
   .glow .b{width:380px;height:380px;background:#dde4f2;bottom:-160px;left:-120px;animation-delay:-6s}
   @keyframes drift{to{transform:translate(30px,40px) scale(1.08)}}
-
-  main{
-    position:relative;z-index:1;
-    max-width:880px;margin:0 auto;
-    padding:calc(56px + env(safe-area-inset-top)) 20px calc(48px + env(safe-area-inset-bottom));
-  }
-
-  header{margin-bottom:40px;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
-  .hello{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--muted);
-         background:rgba(255,255,255,.7);border:1px solid var(--line);padding:6px 12px;border-radius:99px;backdrop-filter:blur(8px)}
-  .hello i{width:7px;height:7px;border-radius:50%;background:#3aa776;box-shadow:0 0 0 3px rgba(58,167,118,.15)}
-  h1{font-size:clamp(32px,6vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-top:18px}
+  main{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:calc(44px + env(safe-area-inset-top)) 16px calc(60px + env(safe-area-inset-bottom))}
+  .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;animation:rise .6s ease both}
+  h1{font-size:clamp(30px,6vw,40px);font-weight:800;letter-spacing:-.02em}
   h1 em{font-style:normal;background:linear-gradient(90deg,#2f6f82,#2e5784);-webkit-background-clip:text;background-clip:text;color:transparent}
-  header p{color:var(--muted);font-size:17px;margin-top:10px;max-width:440px;line-height:1.55}
+  .ebtn{border:0;background:rgba(255,255,255,.8);border-radius:99px;padding:8px 14px;font:600 13px Heebo,sans-serif;color:var(--accent);box-shadow:0 1px 4px rgba(22,32,44,.1);cursor:pointer;transition:.25s}
+  .ebtn.on{background:var(--accent);color:#fff}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  details{background:var(--card);border-radius:20px;margin-bottom:12px;box-shadow:0 1px 2px rgba(22,32,44,.04),0 6px 18px rgba(22,32,44,.05);overflow:hidden;opacity:0;animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
+  summary{list-style:none;display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;font-weight:700;font-size:16px;-webkit-tap-highlight-color:transparent;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  .gi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex:none}
+  .cnt{font-size:12px;color:var(--soft);font-weight:500}
+  .chev{margin-inline-start:auto;color:#b4bdc8;font-size:18px;transition:transform .3s}
+  details[open] .chev{transform:rotate(-90deg)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:0 12px 12px}
+  details[open] .grid{animation:open .35s ease}
+  @keyframes open{from{opacity:0;transform:translateY(-4px)}}
+  a.it{position:relative;display:flex;align-items:center;gap:10px;background:#f5f7fa;border-radius:14px;padding:10px 12px;text-decoration:none;color:inherit;min-height:58px;transition:background .2s,transform .2s}
+  a.it:hover{background:#edf1f6;transform:translateY(-1px)}
+  a.it:active{transform:scale(.98)}
+  .ie{font-size:20px;flex:none;width:28px;text-align:center}
+  .logo{width:30px;height:30px;border-radius:8px;flex:none;object-fit:cover;box-shadow:0 2px 6px rgba(22,32,44,.15);background:#fff}
+  .tx{min-width:0}
+  .tx b{display:block;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tx small{display:block;font-size:11.5px;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .x,a.it.add,.gx{display:none}
+  .editing .x{display:grid;place-items:center;position:absolute;top:-6px;left:-6px;width:22px;height:22px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:12px;cursor:pointer;z-index:2}
+  .editing a.it:not(.add){animation:jig .3s ease-in-out infinite alternate}
+  .editing a.it:nth-child(2n){animation-delay:-.15s}
+  @keyframes jig{from{transform:rotate(-.7deg)}to{transform:rotate(.7deg)}}
+  .editing a.it.add{display:flex;justify-content:center;border:2px dashed #c6d0db;background:transparent;color:var(--muted);font-weight:600;font-size:14px;cursor:pointer}
+  .editing .gx{display:inline-block;border:0;background:none;color:#c0392b;font:500 12px Heebo,sans-serif;cursor:pointer;margin-inline-start:6px}
+  .newg{display:none;width:100%;border:2px dashed #c6d0db;background:transparent;border-radius:20px;padding:14px;font:600 14px Heebo,sans-serif;color:var(--muted);cursor:pointer}
+  .editing .newg{display:block}
 
-  a.app{
-    --tint:#eef4f7; --accent:#2f6f82;
-    position:relative;display:flex;flex-direction:column;
-    background:var(--card);border:1px solid var(--line);border-radius:22px;
-    padding:22px;text-decoration:none;color:inherit;overflow:hidden;
-    box-shadow:var(--shadow);
-    opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;
-    transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s;
-    -webkit-tap-highlight-color:transparent;
-  }
-  a.app::before{content:"";position:absolute;inset:0 0 auto 0;height:96px;background:linear-gradient(180deg,var(--tint),transparent);opacity:.9;transition:height .4s}
-  a.app:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:#d5dde6}
-  a.app:hover::before{height:130px}
-  a.app:active{transform:translateY(-1px) scale(.99)}
-  a.app:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-
-  .top{position:relative;display:flex;align-items:center;gap:14px}
-  .icon{width:56px;height:56px;border-radius:15px;flex:none;background:#fff;box-shadow:0 4px 14px rgba(22,32,44,.12);
-        display:grid;place-items:center;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
-  .icon img{width:100%;height:100%;object-fit:cover;display:block}
-  .icon b{font-size:24px;font-weight:800;color:var(--accent)}
-  a.app:hover .icon{transform:rotate(-4deg) scale(1.05)}
-  .name{font-size:21px;font-weight:700;letter-spacing:-.01em}
-  .host{font-size:12.5px;color:var(--muted);direction:ltr;text-align:right;margin-top:1px}
-
-  .desc{position:relative;font-size:15.5px;line-height:1.6;color:#3b4757;margin:18px 0 20px}
-
-  .foot{position:relative;margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .chips{display:flex;flex-wrap:wrap;gap:6px}
-  .chip{font-size:12px;font-weight:500;padding:4px 10px;border-radius:99px;background:var(--tint);color:var(--accent)}
-  .go{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--tint);color:var(--accent);
-      transition:background .3s,color .3s,transform .35s cubic-bezier(.2,.7,.2,1)}
-  .go svg{width:18px;height:18px}
-  a.app:hover .go{background:var(--accent);color:#fff;transform:translateX(-4px)}
-
-  footer{margin-top:44px;font-size:13px;color:#8a95a5;text-align:center;animation:rise .7s .5s both}
-
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){
-    *,*::before{animation:none!important;transition:none!important}
-    a.app{opacity:1}
-  }
-  @media (max-width:520px){
-    main{padding-top:calc(40px + env(safe-area-inset-top))}
-    header{margin-bottom:28px}
-    .grid{grid-template-columns:1fr;gap:12px}
-    a.app{padding:18px;border-radius:20px}
-  }
+  .veil{position:fixed;inset:0;background:rgba(22,32,44,.3);opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
+  .veil.on{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;background:#fff;border-radius:24px 24px 0 0;padding:20px 16px calc(22px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:10}
+  .sheet.on{transform:none}
+  .sheet h3{font-size:17px;margin-bottom:12px}
+  .sheet p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+  .sheet input,.sheet select{width:100%;font:15px Heebo,sans-serif;padding:11px 12px;border:1px solid #dde3ea;border-radius:11px;margin-bottom:8px;background:#f8fafc;color:var(--ink)}
+  .row{display:flex;gap:8px}
+  .row .em{width:62px;text-align:center;flex:none}
+  .btns{display:flex;gap:8px;margin-top:4px}
+  .btns button{flex:1;border:0;font:700 15px Heebo,sans-serif;padding:12px;border-radius:12px;cursor:pointer}
+  .ok{background:var(--accent);color:#fff}
+  .no{background:#eef1f5;color:var(--ink)}
+  .toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translate(-50%,20px);background:var(--ink);color:#fff;font-size:14px;padding:10px 16px;border-radius:99px;opacity:0;transition:.3s;z-index:11;pointer-events:none}
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}details{opacity:1}}
 </style>
 </head>
 <body>
-  <div class="glow" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
+<div class="glow" aria-hidden="true"><span class="a"></span><span class="b"></span></div>
+<main id="main">
+  <div class="top"><h1>שלום <em>יורי</em></h1><button class="ebtn" id="eb">עריכה</button></div>
+  <div id="list"></div>
+  <button class="newg" id="newg">＋ קבוצה חדשה</button>
+</main>
 
-  <main>
-    <header>
-      <span class="hello"><i></i>יורי בללוב</span>
-      <h1>האפליקציות <em>שלי</em></h1>
-    </header>
+<div class="veil" id="veil"></div>
+<div class="sheet" id="sheet"></div>
+<div class="toast" id="toast"></div>
 
-    <section class="grid">
-      <a class="app" href="https://sequel-nu.vercel.app/" style="--tint:#e9f2f5;--accent:#2f6f82;animation-delay:.12s">
-        <div class="top">
-          <div class="icon"><img src="https://sequel-nu.vercel.app/apple-icon" alt="" onerror="this.replaceWith(Object.assign(document.createElement('b'),{textContent:'S'}))"></div>
-          <div><div class="name">Sequel</div><div class="host">sequel-nu.vercel.app</div></div>
-        </div>
-        <p class="desc">מדריכי צפייה לסדרות וסרטים, תיעוד צפיות ומה רואים הלאה.</p>
-        <div class="foot">
-          <div class="chips"><span class="chip">סרטים</span><span class="chip">סדרי צפייה</span></div>
-          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-        </div>
-      </a>
+<script>
+var REPO = "YuriBelalov/yuribelalov.github.io", FILE = "links.json";
+var data = {groups: []}, editing = false, openState = {};
+var $ = function (id) { return document.getElementById(id); };
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+function toast(m) { var t = $("toast"); t.textContent = m; t.classList.add("on"); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove("on"); }, 2200); }
 
-      <a class="app" href="https://valu.ybelalov.workers.dev/" style="--tint:#eaf0f8;--accent:#2e5784;animation-delay:.22s">
-        <div class="top">
-          <div class="icon"><img src="https://valu.ybelalov.workers.dev/icons/icon-180.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('b'),{textContent:'V'}))"></div>
-          <div><div class="name">Valu</div><div class="host">valu.ybelalov.workers.dev</div></div>
-        </div>
-        <p class="desc">כל השוברים והזיכויים במקום אחד.</p>
-        <div class="foot">
-          <div class="chips"><span class="chip">שוברים</span><span class="chip">ארנק משותף</span></div>
-          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-        </div>
-      </a>
-    </section>
-  </main>
+function draw() {
+  var h = "";
+  data.groups.forEach(function (g, gi) {
+    var isOpen = openState[gi] !== undefined ? openState[gi] : g.open;
+    h += '<details data-g="' + gi + '"' + (isOpen ? " open" : "") + ' style="animation-delay:' + (gi * 0.07) + 's">';
+    h += '<summary><span class="gi" style="background:' + esc(g.tint || "#eef2f6") + '">' + esc(g.emoji || "📁") + '</span>' + esc(g.name);
+    h += ' <span class="cnt">' + g.items.length + '</span><button class="gx" data-dg="' + gi + '">מחק קבוצה</button><span class="chev">‹</span></summary><div class="grid">';
+    g.items.forEach(function (it, ii) {
+      var ic = it.logo ? '<img class="logo" src="' + esc(it.logo) + '" alt="" onerror="this.outerHTML=\'<span class=ie>🔗</span>\'">' : '<span class="ie">' + esc(it.emoji || "🔗") + '</span>';
+      h += '<a class="it" href="' + esc(it.url) + '"><button class="x" data-g="' + gi + '" data-i="' + ii + '">✕</button>' + ic + '<span class="tx"><b>' + esc(it.title) + '</b>' + (it.sub ? '<small>' + esc(it.sub) + '</small>' : "") + '</span></a>';
+    });
+    h += '<a class="it add" data-add="' + gi + '">＋ הוסף</a></div></details>';
+  });
+  $("list").innerHTML = h;
+  $("main").classList.toggle("editing", editing);
+}
+
+$("list").addEventListener("toggle", function (e) { var d = e.target; if (d.dataset && d.dataset.g !== undefined) openState[d.dataset.g] = d.open; }, true);
+$("list").addEventListener("click", function (e) {
+  var t = e.target;
+  if (t.classList.contains("x")) {
+    e.preventDefault(); e.stopPropagation();
+    var g = data.groups[+t.dataset.g], it = g.items[+t.dataset.i];
+    g.items.splice(+t.dataset.i, 1); draw(); save("הסרת " + it.title);
+  } else if (t.classList.contains("gx")) {
+    e.preventDefault(); e.stopPropagation();
+    var gg = data.groups[+t.dataset.dg];
+    if (gg.items.length && !confirm("למחוק את הקבוצה " + gg.name + " עם כל הקישורים שבה?")) return;
+    data.groups.splice(+t.dataset.dg, 1); openState = {}; draw(); save("מחיקת קבוצה " + gg.name);
+  } else if (t.closest && t.closest("[data-add]")) {
+    e.preventDefault(); itemForm(+t.closest("[data-add]").dataset.add);
+  } else if (editing && t.closest && t.closest("a.it")) {
+    e.preventDefault();
+  }
+});
+
+function sheet(html) { $("sheet").innerHTML = html; $("sheet").classList.add("on"); $("veil").classList.add("on"); }
+function close() { $("sheet").classList.remove("on"); $("veil").classList.remove("on"); }
+$("veil").onclick = close;
+
+function itemForm(gi) {
+  sheet('<h3>הוספת קישור ל' + esc(data.groups[gi].name) + '</h3>' +
+    '<div class="row"><input class="em" id="fE" value="⭐"><input id="fT" placeholder="שם"></div>' +
+    '<input id="fS" placeholder="תיאור קצר (לא חובה)">' +
+    '<input id="fU" placeholder="קישור" dir="ltr" inputmode="url">' +
+    '<div class="btns"><button class="no" id="fN">ביטול</button><button class="ok" id="fO">הוסף</button></div>');
+  $("fN").onclick = close;
+  $("fO").onclick = function () {
+    var title = $("fT").value.trim(), url = $("fU").value.trim();
+    if (!title || !url) { toast("צריך שם וקישור"); return; }
+    if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+    data.groups[gi].items.push({emoji: $("fE").value.trim() || "🔗", title: title, sub: $("fS").value.trim(), url: url});
+    openState[gi] = true; close(); draw(); save("הוספת " + title);
+  };
+  setTimeout(function () { $("fT").focus(); }, 300);
+}
+
+$("newg").onclick = function () {
+  sheet('<h3>קבוצה חדשה</h3><div class="row"><input class="em" id="gE" value="📁"><input id="gN" placeholder="שם הקבוצה"></div>' +
+    '<div class="btns"><button class="no" id="gC">ביטול</button><button class="ok" id="gO">צור</button></div>');
+  $("gC").onclick = close;
+  $("gO").onclick = function () {
+    var n = $("gN").value.trim(); if (!n) return;
+    var tints = ["#eef0fb", "#fbeeee", "#eaf5ee", "#fdf1e3", "#e9f2f5", "#f3eefa"];
+    data.groups.push({name: n, emoji: $("gE").value.trim() || "📁", tint: tints[data.groups.length % tints.length], open: true, items: []});
+    close(); draw(); save("קבוצה חדשה " + n);
+  };
+  setTimeout(function () { $("gN").focus(); }, 300);
+};
+
+function tokenForm() {
+  sheet('<h3>חיבור לעריכה</h3><p>כדי שהשינויים יישמרו, הדבק כאן את מפתח הגישה של GitHub למאגר הזה. הוא נשמר רק בדפדפן הזה.</p>' +
+    '<input id="tk" placeholder="github_pat_…" dir="ltr" autocomplete="off">' +
+    '<div class="btns"><button class="no" id="tC">ביטול</button><button class="ok" id="tO">שמור</button></div>');
+  $("tC").onclick = close;
+  $("tO").onclick = function () {
+    var v = $("tk").value.trim(); if (!v) return;
+    fetch("https://api.github.com/repos/" + REPO, {headers: {Authorization: "Bearer " + v}}).then(function (r) { return r.json(); }).then(function (j) {
+      if (j && j.permissions && j.permissions.push) { store("gh_token", v); close(); setEdit(true); toast("מחובר, אפשר לערוך"); }
+      else toast("המפתח לא מתאים למאגר");
+    }).catch(function () { toast("אין חיבור, נסה שוב"); });
+  };
+}
+
+function setEdit(on) { editing = on; $("eb").textContent = on ? "סיום" : "עריכה"; $("eb").classList.toggle("on", on); draw(); }
+$("eb").onclick = function () { if (editing) return setEdit(false); if (!store("gh_token")) return tokenForm(); setEdit(true); };
+
+function b64(s) { return btoa(unescape(encodeURIComponent(s))); }
+var saving = Promise.resolve();
+function save(msg) {
+  var tk = store("gh_token"); if (!tk) { toast("לא מחובר"); return; }
+  var body = JSON.stringify(data, null, 2) + "\n";
+  var api = "https://api.github.com/repos/" + REPO + "/contents/" + FILE;
+  var hd = {Authorization: "Bearer " + tk, Accept: "application/vnd.github+json"};
+  saving = saving.then(function () {
+    return fetch(api + "?ref=main&t=" + Date.now(), {headers: hd, cache: "no-store"}).then(function (r) { return r.ok ? r.json() : {}; }).then(function (cur) {
+      return fetch(api, {method: "PUT", headers: hd, body: JSON.stringify({message: msg, content: b64(body), sha: cur.sha, branch: "main"})});
+    }).then(function (r) {
+      if (r.status === 401) { store("gh_token", null); setEdit(false); toast("המפתח פג, צריך להדביק מחדש"); return; }
+      toast(r.ok ? "נשמר ✓" : "השמירה נכשלה");
+    }).catch(function () { toast("השמירה נכשלה"); });
+  });
+}
+
+function load() {
+  var tk = store("gh_token");
+  var src = tk
+    ? fetch("https://api.github.com/repos/" + REPO + "/contents/" + FILE + "?ref=main&t=" + Date.now(), {headers: {Authorization: "Bearer " + tk, Accept: "application/vnd.github.raw"}, cache: "no-store"})
+    : fetch(FILE + "?t=" + Date.now(), {cache: "no-store"});
+  src.then(function (r) { if (!r.ok) throw 0; return r.json(); })
+     .catch(function () { return fetch(FILE + "?t=" + Date.now(), {cache: "no-store"}).then(function (r) { return r.json(); }); })
+     .then(function (j) { data = j; draw(); })
+     .catch(function () { $("list").innerHTML = '<p style="color:#667385">לא הצלחתי לטעון את הקישורים.</p>'; });
+}
+load();
+</script>
 </body>
 </html>
