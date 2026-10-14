@@ -6,8 +6,18 @@
       "tint": "#e9eef5",
       "open": true,
       "items": [
-        {"title": "Sequel", "sub": "סדרי צפייה", "url": "https://sequel-nu.vercel.app/", "logo": "https://sequel-nu.vercel.app/apple-icon"},
-        {"title": "Valu", "sub": "שוברים", "url": "https://valu.ybelalov.workers.dev/", "logo": "https://valu.ybelalov.workers.dev/icons/icon-180.png"}
+        {
+          "title": "Sequel",
+          "sub": "סדרי צפייה",
+          "url": "https://sequel-nu.vercel.app/",
+          "logo": "https://sequel-nu.vercel.app/apple-icon"
+        },
+        {
+          "title": "Valu",
+          "sub": "שוברים",
+          "url": "https://valu.ybelalov.workers.dev/",
+          "logo": "https://valu.ybelalov.workers.dev/icons/icon-180.png"
+        }
       ]
     },
     {
@@ -16,10 +26,30 @@
       "tint": "#fdf1e3",
       "open": true,
       "items": [
-        {"emoji": "🎰", "title": "לאס וגאס", "sub": "25.10 עד 2.11", "url": "https://claude.ai/artifact/VWpGPaxokWTavHTv66npsg"},
-        {"emoji": "🛍️", "title": "קניות בווגאס", "sub": "רשימה", "url": "https://claude.ai/artifact/QsZcgBXFgVhjKdCrYHyY7N"},
-        {"emoji": "🏰", "title": "בודפשט", "sub": "23.10 עד 29.10", "url": "https://claude.ai/artifact/2RUmVdm2fuUmoj7Z3PDA76"},
-        {"emoji": "✈️", "title": "נסיעה בתפקיד", "sub": "הנחיות 2026", "url": "https://claude.ai/artifact/2hG5xPXKKtFWMV9gEKK6ze"}
+        {
+          "emoji": "🎰",
+          "title": "לאס וגאס",
+          "sub": "25.10 עד 2.11",
+          "url": "https://claude.ai/artifact/VWpGPaxokWTavHTv66npsg"
+        },
+        {
+          "emoji": "🛍️",
+          "title": "קניות בווגאס",
+          "sub": "רשימה",
+          "url": "https://claude.ai/artifact/QsZcgBXFgVhjKdCrYHyY7N"
+        },
+        {
+          "emoji": "🏰",
+          "title": "בודפשט",
+          "sub": "23.10 עד 29.10",
+          "url": "https://claude.ai/artifact/2RUmVdm2fuUmoj7Z3PDA76"
+        },
+        {
+          "emoji": "✈️",
+          "title": "נסיעה בתפקיד",
+          "sub": "הנחיות 2026",
+          "url": "https://claude.ai/artifact/2hG5xPXKKtFWMV9gEKK6ze"
+        }
       ]
     },
     {
@@ -28,9 +58,18 @@
       "tint": "#eaf5ee",
       "open": false,
       "items": [
-        {"emoji": "🏠", "title": "לוח הבית", "sub": "", "url": "https://claude.ai/artifact/2FFtALQkN7qSeUbrbW7TJT"},
-        {"emoji": "🎒", "title": "גן וצהרון", "sub": "תשפ״ז", "url": "https://claude.ai/artifact/RnNTPzKGC1AynoeictPPEy"},
-        {"emoji": "🔥", "title": "גרילים", "sub": "השוואה", "url": "https://claude.ai/artifact/KL3trgjJC23TFeT1UZLDqL"}
+        {
+          "emoji": "🏠",
+          "title": "לוח הבית",
+          "sub": "",
+          "url": "https://claude.ai/artifact/2FFtALQkN7qSeUbrbW7TJT"
+        },
+        {
+          "emoji": "🎒",
+          "title": "גן וצהרון",
+          "sub": "תשפ״ז",
+          "url": "https://claude.ai/artifact/RnNTPzKGC1AynoeictPPEy"
+        }
       ]
     },
     {
@@ -39,8 +78,18 @@
       "tint": "#eaf0f8",
       "open": false,
       "items": [
-        {"emoji": "☁️", "title": "מילון ענן", "sub": "", "url": "https://claude.ai/artifact/Aawtyi6gAcHNzemP5DSEsQ"},
-        {"emoji": "🌐", "title": "CCNA", "sub": "סיכום קורס", "url": "https://claude.ai/artifact/M9bWws4qe7iXUnP1LsKUNc"}
+        {
+          "emoji": "☁️",
+          "title": "מילון ענן",
+          "sub": "",
+          "url": "https://claude.ai/artifact/Aawtyi6gAcHNzemP5DSEsQ"
+        },
+        {
+          "emoji": "🌐",
+          "title": "CCNA",
+          "sub": "סיכום קורס",
+          "url": "https://claude.ai/artifact/M9bWws4qe7iXUnP1LsKUNc"
+        }
       ]
     }
   ]
