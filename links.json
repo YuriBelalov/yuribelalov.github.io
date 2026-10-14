@@ -71,14 +71,7 @@
       "emoji": "📚",
       "tint": "#eaf0f8",
       "open": false,
-      "items": [
-        {
-          "emoji": "🌐",
-          "title": "CCNA",
-          "sub": "סיכום קורס",
-          "url": "https://claude.ai/artifact/M9bWws4qe7iXUnP1LsKUNc"
-        }
-      ]
+      "items": []
     }
   ]
 }
